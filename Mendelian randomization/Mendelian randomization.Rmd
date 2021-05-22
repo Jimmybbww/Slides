@@ -1,0 +1,165 @@
+---
+title: "Mendelian Randomization"
+#subtitle: "Introduction"
+author: "Jimmy Cheng"
+institute: "CMUH"
+#date: "2021-05-21 (update: `r Sys.Date()`)"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+xaringanExtra::use_tile_view() #press o
+xaringanExtra::use_scribble() #press s
+xaringanExtra::use_share_again()
+xaringanthemer::style_mono_accent(base_color = "#43418A")
+```
+
+class: inverse, middle
+<center><h1>目錄</h1></center>
+
+.pull-left[
+* 隨機對照試驗 (RCT)
+
+* 工具變量 (IV)
+
+* 孟德爾隨機化試驗 (MR)
+]
+
+???
+孟德爾隨機化之研究背景
+https://zhuanlan.zhihu.com/p/124321077
+
+---
+# 傳統流行病學
+
+### **隨機對照試驗 (Randomized Controlled Test, RCT)**
+--
+
+.pull-left[
+**優點：**
+* 隨機 － 減少選樣偏差
+
+* 對照 － 控制其他干擾
+
+* 盲性 － 消除人為因素
+
+* 嚴謹的因果推論
+]
+
+--
+
+.pull-right[
+**缺點：**
+* 隨機試驗既昂貴又費時
+
+* 實際執行或道德原因，導致許多危險因子不能隨機分派
+
+* 在複雜疾病中，混雜干擾因子的產生，導致因果關係不成立
+  ]
+
+---
+# 遺傳流行病學
+
+**孟德爾（Gregor Mendel）在1866年提出了兩個遺傳法則：**
+
+1. 隨機分派
+
+2. 自由組合
+
+--
+
+<br>
+**GWAS**
+
+* 單基因疾病 (e.g. 鐮刀型貧血)  $\Rightarrow$  多基因疾病 (e.g. Cancer, T2D, CVD)
+
+--
+
+<br>
+**e.g. CRP水平 提高 CHD 風險？**
+
+* 干擾因子可以藉由統計手段控制，但現實有辦法全部收集到？
+* 纖維蛋白原 (Fibrinogen)
+* 反向因果？
+
+???
+
+在疾病過程中，有許多因素會增加CRP水平和CHD風險，這些因素均被稱為混雜因素，它們可以通過統計分析（例如多變量回歸）手段進行衡量和解釋。但是，現實問題是我們無法知道是否所有這些因素都已被發現。同樣，CRP水平會隨著對亞臨床疾病的反應而增加，從而有可能觀察到的關聯是由於反向因果關係造成的。其中值得注意的混雜因素是纖維蛋白原，它一種可溶的血漿糖蛋白，能使血液凝結，同樣也是炎症反應的一部分。儘管觀察到CRP與冠心病風險呈正相關，但對各種常規風險因素（例如年齡，性別，體重指數和糖尿病狀態）的調整矯正之後該關聯度可降低，並在進一步矯正纖維蛋白原時接近零。評估CRP的升高是否與纖維蛋白原的變化有因果關係非常重要，因為如果兩者之間存在因果關係，CRP對CHD的效應將會收到纖維蛋白原的影響，這會減弱真實的因果關係。
+
+---
+class: inverse, center, middle
+# 工具變量 
+# (Instrumental Variable, IV)
+
+---
+# 何謂工具變量 
+
+**工具變量係為解決常規流行病學中干擾因子和反向因果關係的問題**
+ 
+**1. 工具變量需可測**
+  - 遺傳變異
+  
+--
+
+**2. 與感興趣的變數相關**
+  - 遺傳變異與暴露有關
+  
+--
+
+**3. 與其他干擾因子不相關**
+  - 該遺傳變異與暴露-結果關聯的任何混雜因素均不相關
+  
+--
+
+**4. 對結果的影響只能通過危險因子呈現**
+  - 該遺傳變異不會影響結果，除非可能通過與暴露的關聯來實現
+
+---
+# 標準 MR Design
+
+.center[![](simple_IV.png)]
+.footnote[Figure | 標準的孟德爾隨機化試驗示意圖]
+
+---
+# 將遺傳變異做為工具變量
+
+* 遺傳變異為**隨機分派**，不受環境與干擾因子影響
+
+* 個體在後天測得的變量不可能是遺傳變異的**原因** 
+
+--
+
+* 相當於在人口中開展一項**自然實驗**，**隨機分派**每位受試者某些**個體遺傳**的 “治療”， 以提高其CRP水平
+
+--
+
+> **如果攜帶相關遺傳變異的個體表現出較高的CHD發生率**
+
+--
+
+  >1. CRP是CHD的**因果風險因子**，降低CRP水平可導致冠心病發病率降低
+
+  >2. 可以進一步估算出**因果參數**
+
+---
+# 違反工具變量假設
+
+* 在實際研究中，僅憑觀測數據是無法檢驗兩個變量之間是否存在因果關係，因為它實際上並不滿足**工具變量假設**。
+
+* e.g. 如果孟德爾隨機化分析中使用的與CRP水平相關的遺傳變異也與血壓獨立相關，則遺傳亞組的比較將不是CRP對冠心病風險之**因果效應的有效檢驗**，因為它受到了高血壓等因素的干擾。
+
+* **工具變量假設的有效性**對於孟德爾隨機化試驗的解釋至關重要。
+
+---
+class: inverse, center, middle
+# Thanks for Your Attention !
