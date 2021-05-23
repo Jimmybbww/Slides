@@ -1,0 +1,100 @@
+---
+title: "My Presentation"
+subtitle: "Subtitle"
+author: "Jimmy Cheng"
+institute: "CMUH"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+xaringanExtra::use_tile_view() #press o
+xaringanExtra::use_scribble() #press s
+xaringanthemer::style_mono_accent(base_color = "#43418A")
+```
+
+# `#` h1 標題
+## `##` h2 標題
+### `###` h3 標題
+
+- `Addins -> Infinite moon reader` 開啟無限月讀模式 (請先 knit)
+- 用 `-/*` 條列內容
+  - 縮排可以添加巢式列表
+  1. 可以用數字編號
+  - <span style="color: red">紅色的字</span>
+  > 用 `>` 引述句子
+  
+--
+- 在 `--` 之後的內容可以後續顯現
+
+.footnote[\* _這個是註腳_]
+
+???
+在三個問號之下可以寫小抄
+
+---
+class: inverse, center, middle
+## 標題 2
+
+.pull-left[
+#### Here is an unordered list:
+
+* Item foo
+* Item bar
+* Item baz
+* Item zip
+]
+
+.pull-right[
+#### And an ordered list:
+
+1. Item one
+2. Item two
+3. Item three
+4. Item four
+]
+
+&nbsp;
+
+#### 頭尾單 $ 插入數學公式，雙 $ 公式換行置中
+$$Y= \beta_0+ \beta_1X_1+ ... \beta_nX_n$$
+
+---
+# Plot
+```{r, fig.align='center', fig.height=3.5, dpi=300}
+library(ggplot2)
+(p<- ggplot(iris)+ 
+    geom_point(aes(Sepal.Length, Sepal.Width, color=Species)))
+```
+
+---
+# Plot.ly
+```{r, echo=F}
+plotly::ggplotly(p, width = 9)
+```
+
+---
+# Table (DT::datatable)
+```{r, echo=F}
+DT::datatable(iris, 
+              fillContainer = FALSE, 
+              options = list(pageLength = 5))
+```
+
+---
+# Table (HTML format)
+```{r, echo=F}
+knitr::kable(head(iris), 'html')
+```
+
+---
+class: inverse, center, middle
+# Thanks for Your Attention !
