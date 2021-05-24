@@ -7,7 +7,7 @@ date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: 
-      - css/xaringan-themer.css 
+      - xaringan-themer.css 
       - css/mytheme.css
     lib_dir: libs
     seal: false
@@ -23,11 +23,10 @@ options(htmltools.dir.version = FALSE)
 xaringanExtra::use_tile_view() #press o
 xaringanExtra::use_scribble() #press s
 #xaringanthemer::style_mono_accent(base_color = "#43418A")
-xaringanthemer::style_solarized_light()
+xaringanthemer::style_solarized_light(header_color = '#024557')
 knitr::opts_chunk$set(dpi = 300,        # ensures high resolution images
-                      out.height='500px',
-                      out.width='700px',
                       fig.align='center',
+                      message = FALSE, 
                       echo = FALSE,     # FALSE: code chunks don't show
                       warning = FALSE,  # FALSE: suppresses warning messages
                       error = FALSE)    # FALSE: suppresses error messages
@@ -92,7 +91,7 @@ $$Y= \beta_0+ \beta_1X_1+ ... \beta_nX_n$$
 
 ---
 # Plot
-```{r}
+```{r, fig.width=9, fig.height=6}
 library(ggplot2)
 (p<- ggplot(iris)+ 
     geom_point(aes(Sepal.Length, Sepal.Width, color=Species))+
@@ -104,7 +103,9 @@ library(ggplot2)
 ---
 # Plot.ly
 ```{r}
-plotly::ggplotly(p)
+library(widgetframe)
+l<- plotly::ggplotly(p)
+frameWidget(l)
 ```
 
 ---

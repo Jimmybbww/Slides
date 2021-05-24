@@ -44,10 +44,10 @@
 
   /* Colors */
   --text-color: #657b83;
-  --header-color: #dc322f;
+  --header-color: #0f5c70;
   --background-color: #fdf6e3;
   --link-color: #b58900;
-  --text-bold-color: #d33682;
+  --text-bold-color: #0f5c70;
   --code-highlight-color: #268bd240;
   --inverse-text-color: #fdf6e3;
   --inverse-background-color: #002b36;
@@ -55,7 +55,7 @@
   --inverse-link-color: #b58900;
   --title-slide-background-color: #002b36;
   --title-slide-text-color: #fdf6e3;
-  --header-background-color: #dc322f;
+  --header-background-color: #0f5c70;
   --header-background-text-color: #fdf6e3;
 }
 

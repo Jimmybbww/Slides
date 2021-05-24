@@ -1,27 +1,38 @@
 ---
 title: "Mendelian Randomization"
-#subtitle: "Introduction"
-author: "Jimmy Cheng"
-institute: "CMUH"
-#date: "2021-05-21 (update: `r Sys.Date()`)"
-date: "`r Sys.Date()`"
+subtitle: "<br>"
+author: "*Jimmy Cheng*"
+#institute: "CMUH"
+date: "*`r Sys.Date()`*"
 output:
   xaringan::moon_reader:
     self_contained: true
-    css: xaringan-themer.css
+    css: 
+      - xaringan-themer.css 
+      - css/mytheme.css
     lib_dir: libs
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      beforeInit: "macros.js"
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 xaringanExtra::use_tile_view() #press o
 xaringanExtra::use_scribble() #press s
+
+knitr::opts_chunk$set(dpi = 300,        # ensures high resolution images
+                      fig.align='center',
+                      message = FALSE, 
+                      echo = FALSE,     # FALSE: code chunks don't show
+                      warning = FALSE,  # FALSE: suppresses warning messages
+                      error = FALSE)    # FALSE: suppresses error messages
 xaringanExtra::use_share_again()
-xaringanthemer::style_mono_accent(base_color = "#43418A")
+#xaringanthemer::style_mono_accent()
+xaringanthemer::style_solarized_light(header_color = '#0f5c70',
+                                      text_bold_color = '#0f5c70')
 ```
 
 class: inverse, middle
@@ -102,7 +113,46 @@ class: inverse, center, middle
 # (Instrumental Variable, IV)
 
 ---
-# 何謂工具變量 
+# 為何使用工具變量（一）
+**簡單線性回歸：**
+$$y_i = \alpha+\beta x_i+\varepsilon_i\qquad(i=1,...,n)$$
+--
+**需符合：**
+
+$$E(\varepsilon_i) = 0; \quad V(\varepsilon_i) = \sigma^2; \quad     Cov(\varepsilon_i, \varepsilon_j) = 0, i \ne j$$
+$$Cov(x_i, \varepsilon_i = 0)$$
+$$y \thicksim N(\alpha+ \beta x_i, \sigma^2)$$
+
+--
+**當， $Cov(x_i,\varepsilon_i\ne0)$ ：**
+  * 即解釋變量 $x$ 與 $\varepsilon$ 相關 $\Rightarrow$ **內生性問題 （OLS 估計量不一致）**
+
+---
+# 為何使用工具變量（二）
+**以 $z_i$ 當作工具變量 (IV)，其符合：**
+
+$Cov(z_i, \varepsilon_i) = 0; \quad Cov(z_i, x_i) \ne 0 \Rightarrow$ **遺傳變異與暴露有關**
+
+--
+
+**First stage regression** $\quad x_i = \gamma + \delta z_i + \mu_i$
+
+**Fitted value:** $\quad \hat x_i = \hat \gamma + \hat \delta z_i$
+
+**Residual:** $\quad \hat \mu_i = x_i - \hat x_i$
+
+**將內生變量拆解成兩部分：** $\quad x_i = \hat x_i + \hat \mu_i$
+
+--
+
+**2SLS:** $\quad y_i = \alpha + \beta \hat x_i +  (\varepsilon_i + \beta \hat \mu_i) \Rightarrow$ $x_i$ 與 $(\varepsilon_i + \beta \hat \mu_i)$ 不相關
+
+1. $\hat x_i$ 為工具變量 $z$ 的線性函數，故 $\hat x_i$ 與 $\varepsilon$ 不相關
+
+2. $\hat x_i$ 與 $\hat \mu_i$ 不相關
+
+---
+# 遺傳流行病學中的工具變量 
 
 **工具變量係為解決常規流行病學中干擾因子和反向因果關係的問題**
  
@@ -127,7 +177,7 @@ class: inverse, center, middle
 ---
 # 標準 MR Design
 
-.center[![](simple_IV.png)]
+.center[![](img/simple_IV.png)]
 .footnote[Figure | 標準的孟德爾隨機化試驗示意圖]
 
 ---
@@ -150,6 +200,12 @@ class: inverse, center, middle
   >1. CRP是CHD的**因果風險因子**，降低CRP水平可導致冠心病發病率降低
 
   >2. 可以進一步估算出**因果參數**
+
+---
+# RCT design vs. MR design
+
+.center[![:scale 65%](img/RCTvsMR.png)]
+.footnote[Figure | 臨床試驗 vs. 孟德爾隨機化試驗]
 
 ---
 # 違反工具變量假設
