@@ -6,21 +6,44 @@ institute: "CMUH"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: 
+      - css/xaringan-themer.css 
+      - css/mytheme.css
     lib_dir: libs
+    seal: false
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      beforeInit: "macros.js"
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 xaringanExtra::use_tile_view() #press o
 xaringanExtra::use_scribble() #press s
-xaringanthemer::style_mono_accent(base_color = "#43418A")
+#xaringanthemer::style_mono_accent(base_color = "#43418A")
+xaringanthemer::style_solarized_light()
+knitr::opts_chunk$set(dpi = 300,        # ensures high resolution images
+                      out.height='500px',
+                      out.width='700px',
+                      fig.align='center',
+                      echo = FALSE,     # FALSE: code chunks don't show
+                      warning = FALSE,  # FALSE: suppresses warning messages
+                      error = FALSE)    # FALSE: suppresses error messages
 ```
 
+class: title-slide, center, middle, inverse
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/64/Mangekyou_Sharingan_Madara_%28Eternal%29.svg)
+background-position: bottom
+background-size: contain
+
+# `r rmarkdown::metadata$title`
+<br>
+### *`r rmarkdown::metadata$author`*
+
+
+---
 # `#` h1 標題
 ## `##` h2 標題
 ### `###` h3 標題
@@ -41,8 +64,8 @@ xaringanthemer::style_mono_accent(base_color = "#43418A")
 在三個問號之下可以寫小抄
 
 ---
-class: inverse, center, middle
-## 標題 2
+class: inverse, middle
+## .center[標題 2]
 
 .pull-left[
 #### Here is an unordered list:
@@ -69,21 +92,24 @@ $$Y= \beta_0+ \beta_1X_1+ ... \beta_nX_n$$
 
 ---
 # Plot
-```{r, fig.align='center', fig.height=3.5, dpi=300}
+```{r}
 library(ggplot2)
 (p<- ggplot(iris)+ 
-    geom_point(aes(Sepal.Length, Sepal.Width, color=Species)))
+    geom_point(aes(Sepal.Length, Sepal.Width, color=Species))+
+    xaringanthemer::theme_xaringan(background_color = "#FDF6E3",
+                                   accent_color = "#000000")+
+    xaringanthemer::scale_xaringan_fill_continuous())
 ```
 
 ---
 # Plot.ly
-```{r, echo=F}
-plotly::ggplotly(p, width = 9)
+```{r}
+plotly::ggplotly(p)
 ```
 
 ---
 # Table (DT::datatable)
-```{r, echo=F}
+```{r}
 DT::datatable(iris, 
               fillContainer = FALSE, 
               options = list(pageLength = 5))
@@ -91,7 +117,7 @@ DT::datatable(iris,
 
 ---
 # Table (HTML format)
-```{r, echo=F}
+```{r}
 knitr::kable(head(iris), 'html')
 ```
 

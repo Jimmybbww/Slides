@@ -1,0 +1,81 @@
+---
+title: "My Presentation"
+subtitle: "Subtitle"
+author: "Jimmy Cheng"
+institute: "CMUH"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: 
+      - css/xaringan-themer.css 
+      - css/mytheme.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+xaringanExtra::use_tile_view() #press o
+xaringanExtra::use_scribble() #press s
+#xaringanthemer::style_mono_accent(base_color = "#43418A")
+xaringanthemer::style_solarized_light()
+knitr::opts_chunk$set(dpi = 300,        # ensures high resolution images
+                      out.height='500px',
+                      out.width='700px',
+                      fig.align='center',
+                      echo = FALSE,     # FALSE: code chunks don't show
+                      warning = FALSE,  # FALSE: suppresses warning messages
+                      error = FALSE)    # FALSE: suppresses error messages
+plot= 'https://upload.wikimedia.org/wikipedia/commons/6/64/Mangekyou_Sharingan_Madara_%28Eternal%29.svg'
+```
+
+class: inverse, center, middle
+background-image: url(`r plot`)
+background-size: contain
+## .green[永恆萬花筒寫輪眼 contain]
+
+---
+class: bottom, right
+background-image: url(`r plot`)
+background-size: cover
+## .bg-black[.blue[永恆萬花筒寫輪眼 cover]]
+
+---
+class: inverse, center, middle
+# .bg-red[永恆萬花筒寫輪眼]
+
+----
+<br style="line-height: 150px">
+
+.left-col[.center[
+<img src=`r plot` style="width: 30%" />
+### Label 1
+]]
+
+.center-col[
+.center[
+<img src=`r plot` style="width: 50%" />
+### Label 2
+]]
+
+.right-col[.center[
+<img src=`r plot` style="width: 70%" />
+### Label 3
+]]
+
+---
+<br style='line-height: 200px'>
+.center[![:scale 30%](`r plot`)]
+
+---
+```{r, echo=FALSE, fig.align='center', dpi=300, out.height='600px'}
+knitr::include_graphics(plot)
+```
+
+---
+class: inverse, center, middle
+# *Thanks for Your Attention !*

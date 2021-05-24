@@ -1,0 +1,53 @@
+.red {color: red;}
+.bg-red {background: red;}
+.green {color: green;}
+.bg-green {background: green;}
+.blue {color: blue;}
+.bg-blue {background: blue;}
+.white {color: white;}
+.bg-white {background: white;}
+.black {color: black;}
+.bg-black {background: black;}
+.bg-yellow {background: yellow;}
+
+/*-- Hides slide number from title slide --*/
+.title-slide .remark-slide-number { display: none; }
+
+/*-- 3 column layout --*/
+.left-col {
+  width: 29%;
+  text-align: left;
+  padding-left: 16px;
+  padding-right: 16px;
+  float: left;
+}
+
+.center-col {
+  width: 29%;
+  text-align: left;
+  padding-left: 16px;
+  padding-right: 16px;
+  float: left;
+}
+
+.right-col {
+  width: 29%;
+  text-align: left;
+  padding-left: 16px;
+  padding-right: 16px;
+  float: left;
+}
+
+.pull-left {
+  padding-top: 0px;
+}
+
+.pull-left-narrow {
+  float: left;
+  width: 20%;
+}
+
+.pull-right-wide {
+  float: right;
+  width: 75%;
+}
