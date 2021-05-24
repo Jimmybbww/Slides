@@ -131,7 +131,9 @@ $$y \thicksim N(\alpha+ \beta x_i, \sigma^2)$$
 # 為何使用工具變量（二）
 **以 $z_i$ 當作工具變量 (IV)，其符合：**
 
-$Cov(z_i, \varepsilon_i) = 0; \quad Cov(z_i, x_i) \ne 0 \Rightarrow$ **遺傳變異與暴露有關**
+$Cov(z_i, \varepsilon_i) = 0 \Rightarrow$ **工具變量與其他干擾因子無關**
+
+$Cov(z_i, x_i) \ne 0 \Rightarrow$ **工具變量與內生變數有關**
 
 --
 
@@ -218,4 +220,4 @@ $Cov(z_i, \varepsilon_i) = 0; \quad Cov(z_i, x_i) \ne 0 \Rightarrow$ **遺傳變
 
 ---
 class: inverse, center, middle
-# Thanks for Your Attention !
+# <u>Thanks for Your Attention !</u>
