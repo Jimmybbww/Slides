@@ -137,7 +137,7 @@ $Cov(z_i, x_i) \ne 0 \Rightarrow$ **工具變量與內生變數有關**
 
 --
 
-**First stage regression** $\quad x_i = \gamma + \delta z_i + \mu_i$
+**First stage regression:** $\quad x_i = \gamma + \delta z_i + \mu_i$
 
 **Fitted value:** $\quad \hat x_i = \hat \gamma + \hat \delta z_i$
 
@@ -221,3 +221,9 @@ $Cov(z_i, x_i) \ne 0 \Rightarrow$ **工具變量與內生變數有關**
 ---
 class: inverse, center, middle
 # <u>Thanks for Your Attention !</u>
+
+---
+```{r}
+devtools::install_github("MRCIEU/TwoSampleMR")
+```
+

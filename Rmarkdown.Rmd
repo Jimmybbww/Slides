@@ -1,0 +1,351 @@
+---
+title: "Rmarkdown"
+author: Jimmy Cheng
+date: "`r Sys.Date()`"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+xaringanExtra::use_panelset()
+xaringanExtra::use_tile_view() #press o
+xaringanExtra::use_scribble() #press s
+knitr::opts_chunk$set(
+  dpi = 300,  # ensures high resolution images
+  fig.align='center',
+  message = FALSE, 
+  echo = FALSE, # FALSE: code chunks don't show
+  warning = FALSE, # FALSE: suppresses warning messages
+  error = FALSE)    # FALSE: suppresses error messages
+```
+
+
+# **What is Markdown**
+.center[
+<img src= https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg style="width: 30%" />
+#### Markdown Logo
+]
+
+- Markdown 是一種輕量級標記式語言，創始人為 John Gruber。
+它允許人們使用易讀易寫的純文字格式編寫文件，然後轉換成有效的 XHTML（或 HTML）文件。
+
+- 由於 Markdown 的輕量化、易讀易寫特性，並且對於圖片，圖表、數學式都有支援，目前許多網站都廣泛使用 Markdown 來撰寫說明文件或是用於論壇上發表訊息。
+
+- 可用於如 GitHub、Reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、簡書 ...等，甚至還能被用來撰寫電子書。
+
+---
+# **Markdown Editors**
+
+**MacDown:**
+
+![](https://d33wubrfki0l68.cloudfront.net/89438104960da350a33b97b06babe51ef244d2d2/ba87f/media/2019/02/macdown.gif)
+
+---
+# **Why Rmarkdown**
+
+&nbsp;
+
+- 借助於 R package **`knitr`** 和 **`rmarkdown`** ，可使 R 代碼的結果自動插入到生成的報告中。
+
+- 此格式稱為 R Markdown 格式，簡稱 Rmd 格式， 其副檔名為 .Rmd。
+
+- 輸出格式可以是 HTML, docx, pdf, beamer ...等。
+
+- 支持 LaTex 格式的數學公式，支持各種編程語言語法彩色加亮顯示 ...等。
+
+- 簡單且快速的製作互動式圖、表。
+
+- 程式撰寫完的同時，報告也做好了！
+
+???
+寫小抄
+
+---
+
+# **Basic syntax (1)**
+**文字前加 '# ' 號設置標題，一級標題對應 1 個 '# ' 號，二級對應 2 個，依此類推，共可設置 6 級標題。**
+
+--
+
+.pull-left[
+**Syntax:**
+```r
+# h1 標題
+## h2 標題
+### h3 標題
+```
+]
+.pull-right[
+**Display:**
+# h1 標題
+## h2 標題
+### h3 標題
+]
+
+---
+# **Basic syntax (2)**
+**1. 用 '- ' 或 '* ' 條列內容：**
+.pull-left[
+**Syntax:**
+```r
+- 禮拜一要開會～ 
+- 禮拜二也要開會！  
+- 怎麼天天都要開會！！！
+```
+]
+.pull-right[
+**Display:**
+- 禮拜一要開會～
+- 禮拜二也要開會！
+- 怎麼天天都要開會！！！
+]
+
+----
+
+--
+
+**2. 也可以直接用數字編號：**
+
+.pull-left[
+**Syntax:**
+```r
+1. 先吃一份豐盛的早餐 \O/  
+2. 然後再吃頓豪華的午餐 XD  
+3. 最後沒錢吃晚餐... ><"
+```
+]
+.pull-right[
+**Display:**
+1. 先吃一份豐盛的早餐 \O/
+2. 然後再吃頓豪華的午餐 XD
+3. 最後沒錢吃晚餐... ><"
+]
+
+---
+
+# **Basic syntax (3)**
+**1. 縮排可以添加巢式列表：**
+.pull-left[
+**Syntax:**
+
+  ```r
+  - Chapter 1
+    - Chapter 1-1
+      - Chapter 1-1.2
+  ```
+]
+.pull-right[
+**Display:**
+
+  - Chapter 1
+    - Chapter 1-1
+      - Chapter 1-1.2
+]
+
+----
+
+--
+
+**2. 句子前用 '> ' 引述句子，文字前後用 '\*' 包裹為斜體，用 '\*\*' 包裹為斜體：**
+
+**Syntax:**
+```r
+> *據本草綱目記載：* **“腦殘者無藥醫也”**
+```  
+**Display:**
+> *據本草綱目記載：* **“腦殘者無藥醫也”** 
+
+---
+# **Insert image**
+
+**Syntax:**
+
+```r
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/
+Sharingan_triple.svg/320px-Sharingan_triple.svg.png?1632503403031)
+```
+
+----
+
+--
+
+**Display:**
+
+.center[![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Sharingan_triple.svg/320px-Sharingan_triple.svg.png?1632503403031)]
+
+---
+# **Math formulas**
+
+&nbsp;
+
+**LD Score regression**
+
+&nbsp;
+
+- **LaTex symbol:**
+
+  ```r
+  E[\chi^2|l_j]=Nh^2l_j/M+Na+1
+  
+  l_j:=\sum_kr^2_{jk}
+  ```
+
+----
+
+--
+
+- **Display:**
+
+  $E[\chi^2|l_j]=Nh^2l_j/M+Na+1$
+
+  $l_j:=\sum_kr^2_{jk}$
+
+---
+# **Table**
+.panelset[
+.panel[.panel-name[R Code]
+```r
+# load library
+library(tidyverse)
+
+# Execute code
+diamonds[1:20,] %>% 
+  select(carat:price) %>% 
+  DT::datatable(fillContainer = FALSE, 
+                options = list(pageLength = 5) )
+```
+]
+
+.panel[.panel-name[Table]
+```{r}
+# load library
+library(tidyverse)
+
+# Execute code
+diamonds[1:20,] %>% 
+  select(carat:price) %>% 
+  DT::datatable(fillContainer = FALSE, 
+                options = list(pageLength = 5) )
+```
+]
+]
+
+---
+# **Plotly**
+.panelset[
+.panel[.panel-name[R Code]
+```r
+fig <- plotly::plot_ly(data = iris, x = ~Sepal.Length, 
+y = ~Petal.Length, color = ~Species)
+
+widgetframe::frameWidget(fig, width='100%', height='40%')
+```
+]
+.panel[.panel-name[Plotly]
+```{r}
+fig <- plotly::plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species)
+
+widgetframe::frameWidget(fig, width='100%', height='40%')
+```
+]
+]
+
+---
+# **Flowchart**
+.panelset[
+.panel[.panel-name[R Code]
+```r
+library(DiagrammeR)
+m <- mermaid("graph TD;
+      tab1[Questionnaire sent to n=1000 participants] -->
+      tab2[Participants came to clinic for evaluation n=700]
+      
+      tab2 --> 
+      tab3[Participants non-eligible for the study n=100]
+      
+      tab2 --> 
+      tab4[Participants eligible for the study n=600]
+      
+      tab4 --> tab5[Study sample n=600]"
+      )
+widgetframe::frameWidget(m)
+```
+]
+.panel[.panel-name[Flowchart]
+![](https://datascienceplus.com/wp-content/uploads/2019/03/flowchart2.png)
+]
+]
+
+---
+# **COVID-19 Map**
+.panelset[
+.panel[.panel-name[R Code]
+```r
+path0 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master"
+file = "csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+path= file.path(path0, file)
+
+Confirmed = data.table::fread(path,data.table = F) %>% .[,c(2:4,ncol(.))]
+names(Confirmed)[4]='cum'
+
+library(leaflet)
+Confirmed %>% 
+leaflet(width = "100%") %>% addTiles() %>% 
+setView(lat = 30, lng = 70, zoom = 2) %>%
+addCircleMarkers(radius = ~(log2(cum)), color = 'red',
+                 fill = T, label = ~paste('N =',cum), 
+                 popup = ~paste('Country/region:',`Country/Region`),
+                 clusterOptions = markerClusterOptions())
+```
+]
+.panel[.panel-name[Map]
+```{r, fig.height=1.4}
+path0 = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master"
+file = "csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+path= file.path(path0, file)
+
+Confirmed = data.table::fread(path,data.table = F) %>% .[,c(2:4,ncol(.))]
+names(Confirmed)[4]='cum'
+
+library(leaflet)
+Confirmed %>% 
+  leaflet(width = "100%") %>% 
+  addTiles() %>% 
+  setView(lat = 30, lng = 70, zoom = 3) %>% 
+  addCircleMarkers(radius = ~(log2(cum)), color = 'red', fill = T, label = ~paste('N =',cum), popup = ~paste('Country/region:',`Country/Region`), clusterOptions = markerClusterOptions())
+```
+]
+]
+
+---
+# **Output format & Engines**
+**Output format:**
+- HTML
+- PDF
+- Word
+- Beamer
+
+**Other engines:**
+- Python
+- SQL
+- Bash
+- *`SASmarkdown`* (Additional R package)
+
+---
+# **Reference**
+1. **Markdown:** https://zh.wikipedia.org/wiki/Markdown
+
+2. **Markdown Editors:** https://dzone.com/articles/best-markdown-editors
+
+3. **Basic Syntax:** https://www.markdownguide.org/basic-syntax/
+
+4. **R Markdown:** https://rmarkdown.rstudio.com/
+
+---
+class: inverse, center, middle
+# Thanks for Your Attention !
