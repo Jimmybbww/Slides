@@ -334,7 +334,7 @@ Confirmed %>%
 - Python
 - SQL
 - Bash
-- *`SASmarkdown`* (Additional R package)
+- SAS (R package: *`SASmarkdown`*)
 
 ---
 # **Reference**
@@ -345,6 +345,12 @@ Confirmed %>%
 3. **Basic Syntax:** https://www.markdownguide.org/basic-syntax/
 
 4. **R Markdown:** https://rmarkdown.rstudio.com/
+
+5. **Flowchart:**
+https://datascienceplus.com/how-to-build-a-simple-flowchart-with-r-diagrammer-package/
+
+6. **CSSEGISandData:**
+https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data
 
 ---
 class: inverse, center, middle
