@@ -4,7 +4,7 @@
     <title>Create Publication-Ready Table1</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jimmy Cheng" />
-    <meta name="date" content="2021-12-16" />
+    <meta name="date" content="2021-12-22" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 
 # Create Publication-Ready Table1
 ### Jimmy Cheng
-### 2021-12-16
+### 2021-12-22
 
 ---
 
@@ -170,10 +170,12 @@ footnote = readLines('Table1_footnote.txt')
 *varList= c("Age","PIDsex","MI","Diabetes","eGFR", "OAD", "Insulin")
 
 # Variable label list
-varLabel= codebook[codebook$Var %in% varList, "Label"] 
+varLabel= 
+  left_join(data.frame(varList), codebook, by = c('varList'='Var'))$Label 
 
 # Category list
-category= codebook[codebook$Var %in% varList, "Category"] %&gt;% unique() 
+category= 
+  left_join(data.frame(varList), codebook, by = c('varList'='Var'))$Category %&gt;% unique() 
 ```
 
 - 基本上，只要 `varList` 被成功創建，後面的指令直接執行即可。
